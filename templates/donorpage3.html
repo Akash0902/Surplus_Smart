@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SurplusSmart - Food Prediction</title>
+    <link rel="stylesheet" href="styledonor3.css">
+</head>
+<body>
+    <header>
+        <h1>SurplusSmart - Food Prediction</h1>
+    </header>
+
+    <div class="container">
+        <!-- File Upload Form -->
+        <form id="uploadForm" action="/predict" method="POST" enctype="multipart/form-data">
+            <label for="name">Name of the Food Item:</label>
+            <input type="text" id="name" name="name" placeholder="Enter Food Name" required>
+
+            <label for="quantity">Quantity (kg):</label>
+            <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" required>
+
+            <label for="date">Date (Made on):</label>
+            <input type="datetime-local" id="date" name="date" required>
+
+            <label for="file">Upload an Image of Food:</label>
+            <input type="file" id="file" name="file" accept="image/*" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <!-- Results Section -->
+        <div id="results">
+            {% if prediction_text %}
+                <h3>{{ prediction_text }}</h3>
+            {% endif %}
+            {% if nutrient_info %}
+                <p>{{ nutrient_info }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
